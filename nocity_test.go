@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -20,4 +21,5 @@ func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 	body := responseRecorder.Body.String()
 
 	assert.NotEqual(t, expected, body)
+	fmt.Println(http.StatusBadRequest, body)
 }
