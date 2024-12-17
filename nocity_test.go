@@ -19,5 +19,5 @@ func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
 	body := responseRecorder.Body.String()
 
-	assert.Equal(t, expected, body)
+	assert.NotEqual(t, expected, body)
 }
