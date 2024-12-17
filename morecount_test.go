@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
@@ -23,4 +24,6 @@ func TestMainHandlerWhenCountMoreThanTotal(t *testing.T) {
 
 	assert.NotEmpty(t, body)
 	assert.LessOrEqual(t, len(list), totalCount)
+
+	fmt.Println(http.StatusOK, body)
 }
