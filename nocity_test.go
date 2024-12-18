@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -12,7 +11,7 @@ import (
 func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
 	expected := "moscow"
-	req := httptest.NewRequest("GET", "/cafe?count=6&city=tula", nil)
+	req := httptest.NewRequest("GET", "/cafe?count=6&city=moscow", nil)
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
@@ -20,6 +19,8 @@ func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
 	body := responseRecorder.Body.String()
 
-	assert.NotEqual(t, expected, body)
-	fmt.Println(http.StatusBadRequest, body)
+	assert.NotEmpty(t, body)
+	assert.Equal(t, expected, body)
+	//assert.Error()
+	//fmt.Println(http.StatusBadRequest, body)
 }
