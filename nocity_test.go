@@ -21,6 +21,6 @@ func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
 	assert.NotEmpty(t, body)
 	assert.Equal(t, expected, body)
-	//assert.Error()
+
 	//fmt.Println(http.StatusBadRequest, body)
 }
