@@ -10,8 +10,7 @@ import (
 
 func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
-	expected := "moscow"
-	req := httptest.NewRequest("GET", "/cafe?count=6&city=moscow", nil)
+	req := httptest.NewRequest("GET", "/cafe?count=2&city=tula", nil)
 
 	responseRecorder := httptest.NewRecorder()
 	handler := http.HandlerFunc(mainHandle)
@@ -19,8 +18,7 @@ func TestMainHandlerWhenNoSuchCity(t *testing.T) {
 
 	body := responseRecorder.Body.String()
 
-	assert.NotEmpty(t, body)
-	assert.Equal(t, expected, body)
+	assert.Equal(t, http.StatusBadRequest, responseRecorder.Code)
 
-	//fmt.Println(http.StatusBadRequest, body)
+	assert.Equal(t, "wrong city value", body)
 }
